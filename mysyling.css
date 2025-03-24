@@ -1,0 +1,46 @@
+p {
+    background: blue;
+    color: white;
+}
+.test {
+    background: red;
+    background: yellow;
+  }
+  p {
+    background: green;
+  }
+  h1 {
+    background: rgb(255, 0, 162);
+    color: black;
+  a {
+    font: Courier;
+    font: 14px Courier;
+    text-decoration: none;
+    color: black;
+    padding: 0px 5px 0px 5px;
+    border-right: 2px solid black;
+  }
+  
+  .mainNav {
+    height: 30px;
+    background: rgb(153, 153, 216);
+    padding-top: 7px;
+    padding-left: 5px;
+    margin-top: 20px;
+    box-shadow: 4px 6px yellow;
+    overflow: hidden;
+  }
+  p {
+    display: inline;
+  }
+  * {
+    display: block;
+  }
+  strong {
+    display: none;
+  }
+  p {
+    background: #115ab7;
+    background: rgba(20, 123, 45, 0.5);
+    background: hsla(0, 100%, 50%, 1);
+  }
