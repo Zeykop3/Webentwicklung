@@ -23,7 +23,7 @@ Die Website ermöglicht es Benutzern, ihre Haut anhand eines interaktiven Formul
 	Nach dem Absenden wird der Hauttyp des Benutzers auf Basis der Auswahl ermittelt (z. B. “Mischhaut”, “fettige Haut”, “normale Haut”).
 	Das Ergebnis wird dem Benutzer sofort auf der gleichen Seite angezeigt.
 
-	* Die Formulardaten (wie Hauttyp, Hautprobleme und andere Auswahlen) werden temporär in der Sitzung 	des 	Browsers gespeichert, aber nicht dauerhaft auf den Servern der Website. Diese Daten werden nach der Sitzung oder nach einer bestimmten Zeit gelöscht, um die Privatsphäre der Benutzer zu schützen.
+	* Die Formulardaten (wie Hauttyp, Hautprobleme und andere Auswahlen) werden temporär in der Sitzung 	des 	Browsers gespeichert, aber nicht dauerhaft auf den Servern der Website. 
 
 	Produktempfehlungen:
 	Basierend auf dem ermittelten Hauttyp könnten automatisch passende Hautpflegeprodukte empfohlen werden. 
