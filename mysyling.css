@@ -1,46 +1,78 @@
-p {
-    background: blue;
-    color: white;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-.test {
-    background: red;
-    background: yellow;
-  }
-  p {
-    background: green;
-  }
-  h1 {
-    background: rgb(255, 0, 162);
-    color: black;
-  a {
-    font: Courier;
-    font: 14px Courier;
-    text-decoration: none;
-    color: black;
-    padding: 0px 5px 0px 5px;
-    border-right: 2px solid black;
-  }
-  
-  .mainNav {
-    height: 30px;
-    background: rgb(153, 153, 216);
-    padding-top: 7px;
-    padding-left: 5px;
-    margin-top: 20px;
-    box-shadow: 4px 6px yellow;
-    overflow: hidden;
-  }
-  p {
-    display: inline;
-  }
-  * {
-    display: block;
-  }
-  strong {
-    display: none;
-  }
-  p {
-    background: #115ab7;
-    background: rgba(20, 123, 45, 0.5);
-    background: hsla(0, 100%, 50%, 1);
-  }
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #a8d5ba; /* Pastellgrün */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  width: 60%;
+  background-color: white; /* Hintergrund des Formulars bleibt weiß */
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+fieldset {
+  border: none;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column; /* Fragen und Eingabefelder untereinander anordnen */
+}
+
+legend {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+input, select, button {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+.results {
+  display: none;
+  margin-top: 20px;
+  background-color: #eaf0e0;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+#result-text {
+  font-size: 1.2rem;
+  color: #333;
+}
