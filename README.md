@@ -4,26 +4,41 @@ Beschreibung
 
 1. Ziel der Website:
 
-Die Website ermöglicht es Benutzern, Rezepte zu entdecken, zu bewerten und ihre Lieblingsrezepte zu speichern. Benutzer können Rezepte nach verschiedenen Kategorien durchsuchen, Kommentare hinterlassen und ihre Bewertungen mit Sternen abgeben. Die Bewertungen und Kommentare werden direkt auf der Website gespeichert.
+Die Website ermöglicht es Benutzern, ihre Haut anhand eines interaktiven Formulars zu analysieren. Sie wählen verschiedene Hautmerkmale aus, wie beispielsweise fettige Haut, trockene Stellen oder Unreinheiten. Am Ende erhalten sie eine personalisierte Empfehlung für ihren Hauttyp (z. B. fettige Haut, Mischhaut, normale Haut). Zusätzlich kann die Website Produktempfehlungen basierend auf dem ermittelten Hauttyp anzeigen.
+
+* Es ist kein Benutzername erforderlich, um den Hauttest durchzuführen. Die Website funktioniert anonym, und alle während des Tests gesammelten Daten werden nur für die Dauer der Sitzung gespeichert und nach Abschluss der Analyse gelöscht, um die Privatsphäre der Benutzer zu schützen.
 
 2. Hauptfunktionen:
+	Formular zur Hautanalyse:
+	Der Benutzer kann aus einer Liste von Optionen (Checkboxen oder Radio Buttons)      auswählen, die verschiedene Hautmerkmale beschreiben. 
+    Zum Beispiel:
+	•	“Fettige Haut”
+	•	“Trockene Stellen”
+	•	“Akne”
+	•	“Rötungen”
+	•	“Normale Haut”
+	Nach dem Ausfüllen des Formulars kann der Benutzer auf einen Absende-Button klicken, der die Auswahl verarbeitet.
 
-- Rezept filtern: Rezepte können nach Kategorien wie „Frühstück“, „Mittagessen“, „Abendessen“ oder „Dessert“ gefiltert werden
+	Analyseergebnis:
+	Nach dem Absenden wird der Hauttyp des Benutzers auf Basis der Auswahl ermittelt (z. B. “Mischhaut”, “fettige Haut”, “normale Haut”).
+	Das Ergebnis wird dem Benutzer sofort auf der gleichen Seite angezeigt.
 
-- Rezeptübersicht: Jedes Rezept enthält eine detaillierte Beschreibung, eine Zutatenliste, Zubereitungsschritte und ein Bild des fertigen Gerichts.
+	* Die Formulardaten (wie Hauttyp, Hautprobleme und andere Auswahlen) werden temporär in der Sitzung 	des 	Browsers gespeichert, aber nicht dauerhaft auf den Servern der Website. 
 
-- Bewertungssystem: Benutzer können Rezepte mit einem Sternesystem bewerten und Kommentare hinzufügen. Benutzer können ihre Kommentare bearbeiten oder löschen. Nutzer können andere Kommentare sehen.
+	Produktempfehlungen:
+	Basierend auf dem ermittelten Hauttyp könnten automatisch passende Hautpflegeprodukte empfohlen werden. 
 
-Favoritenliste:
+	* Diese Empfehlungen basieren ausschließlich auf den während der Sitzung erhobenen anonymen Daten. Nach dem Verlassen der Seite werden diese Daten gelöscht.
 
-- Benutzer können Rezepte zu einer Favoritenliste hinzufügen und entfernen
+    Zum Beispiel:
+	•	Für fettige Haut: mattierende Cremes, ölfreie Produkte.
+	•	Für trockene Haut: feuchtigkeitsspendende Produkte.
+	•	Für Mischhaut: Produkte, die ausgewogen wirken.
 
-3. Datenverwaltung:
+	Merkliste / Favoriten speichern: Benutzer haben die Möglichkeit, empfohlene Produkte in einer Merkliste zu speichern. Diese Funktion erlaubt es den Benutzern, ihre bevorzugten Produkte für eine spätere Betrachtung zu speichern.
 
-Gespeicherte Daten:
+	* Produkt zur Merkliste hinzufügen: Jedes empfohlene Produkt wird mit einer Option versehen, um es zur Merkliste hinzuzufügen. Dies kann durch einen einfachen Button „Zu Favoriten hinzufügen“ erfolgen, der neben jedem empfohlenen Produkt angezeigt wird. Diese Daten werden dauerhaft auf dem Server gespeichert und kann ebenfalls aus der Liste entfernt werden
 
-Rezepte: Titel, Zutaten, Zubereitungsschritte und ein Bild des fertigen Gerichts. 
-
-Bewertungen: Kommentar und Sterne
-
-Favoritenliste
+3. Datenhaltung:
+	Gespeicherte Daten: Produkte in der Merkliste
+	Hautanalyseergebnis nur temporär	
