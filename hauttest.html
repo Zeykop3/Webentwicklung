@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hauttest</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="hauttest.html">Hauttest</a>
+        <a href="normalehaut.html">Hauttypen</a>
+        <a href="merkliste.html"><i class="fas fa-star"></i> Merkliste</a>
+    </nav>  
+
+    <!-- header -->
+    <header class="header-container1">
+        <div class="header-text1">
+            <p>ONLINE HAUTTYPTEST</p>
+            <h1>Hauttyp ganz bequem von Zuhause aus bestimmen</h1> 
+        </div>
+    </header>
+
+    <div id="fragebogen">
+        <h2>Fragebogen</h2>
+
+        <div class="frage fade-in">
+            <div class="frage-box">
+                <p>Frage 1: Wie fühlt sich deine Haut nach dem Reinigen an?</p>
+                <label><input type="radio" name="frage1" value="normal"> Normal</label>
+                <label><input type="radio" name="frage1" value="trocken"> Trocken</label>
+                <label><input type="radio" name="frage1" value="fettig"> Fettig</label>
+            </div>
+        </div>
+
+        <div class="frage fade-in">
+            <div class="frage-box">
+                <p>Frage 2: Wie neigen deine Poren dazu auszusehen?</p>
+                <label><input type="radio" name="frage2" value="normal"> Normal</label>
+                <label><input type="radio" name="frage2" value="klein"> Klein</label>
+                <label><input type="radio" name="frage2" value="vergrößert"> Vergrößert</label>
+            </div>
+        </div>
+
+        <div class="frage fade-in">
+            <div class="frage-box">
+                <p>Frage 3: Wie reagiert deine Haut auf Feuchtigkeit?</p>
+                <label><input type="radio" name="frage3" value="normal"> Normal</label>
+                <label><input type="radio" name="frage3" value="trocken"> Trocken</label>
+                <label><input type="radio" name="frage3" value="fettig"> Fettig</label>
+            </div>
+        </div>
+
+        <div class="frage fade-in">
+            <div class="frage-box">
+                <p>Frage 4: Hast du oft Hautunreinheiten oder Pickel?</p>
+                <label><input type="radio" name="frage4" value="selten"> Selten</label>
+                <label><input type="radio" name="frage4" value="manchmal"> Manchmal</label>
+                <label><input type="radio" name="frage4" value="oft"> Oft</label>
+            </div>
+        </div>
+
+        <div class="frage fade-in">
+            <div class="frage-box">
+                <p>Frage 5: Wie fühlt sich deine Haut am Ende des Tages an?</p>
+                <label><input type="radio" name="frage5" value="normal"> Normal</label>
+                <label><input type="radio" name="frage5" value="trocken"> Trocken</label>
+                <label><input type="radio" name="frage5" value="fettig"> Fettig</label>
+            </div>
+        </div>
+
+        <button class="fade-in" onclick="auswerten()">Auswerten</button>
+    </div>
+
+
+    <!-- Container für normale haut -->
+    <div id="container-normal" class="result-container">
+        <div class="custom-container" fade-in>
+            <div class="custom-row">
+                <div class="custom-col text-col">
+                    <h1>Dein Hauttest deutet auf normale Haut hin.</h1>
+                    <p>Klicke auf den Button, um mehr über deinen Hauttypen zu erfahren und erhalte wertvolle Tipps zur optimalen Pflege </p>
+                    <p><a href="normalehaut.html" class="custom-button"><i class="fa fa-th"> </i> NORMALE HAUT</a></p>
+                </div>
+                <div class="custom-col image-col">
+                    <img class="custom-image" src="skintest.webp" alt="Menschen">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Container für trockene Haut -->
+    <div id="container-trocken" class="result-container">
+        <div class="custom-container" fade-in>
+            <div class="custom-row">
+                <div class="custom-col text-col">
+                    <h1>Dein Hauttest deutet auf trockene Haut hin.</h1>
+                    <p>Klicke auf den Button, um mehr über deinen Hauttypen zu erfahren und erhalte wertvolle Tipps zur optimalen Pflege </p>
+                    <p><a href="trockenehaut.html" class="custom-button"><i class="fa fa-th"> </i> TROCKENE HAUT</a></p>
+                </div>
+                <div class="custom-col image-col">
+                    <img class="custom-image" src="skintest.webp" alt="Menschen">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Container für ölige Haut -->
+    <div id="container-fettig" class="result-container">
+        <div class="custom-container" fade-in>
+            <div class="custom-row">
+                <div class="custom-col text-col">
+                    <h1>Dein Hauttest deutet auf fettige Haut hin.</h1>
+                    <p>Klicke auf den Button, um mehr über deinen Hauttypen zu erfahren und erhalte wertvolle Tipps zur optimalen Pflege </p>
+                    <p><a href="fettigehaut.html" class="custom-button"><i class="fa fa-th"> </i> FETTIGE HAUT</a></p>
+                </div>
+                <div class="custom-col image-col">
+                    <img class="custom-image" src="skintest.webp" alt="Menschen">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Container Für Mischhaut -->
+    <div id="container-mischhaut" class="result-container">
+        <div class="custom-container" fade-in>
+            <div class="custom-row">
+                <div class="custom-col text-col">
+                    <h1>Dein Hauttest deutet auf Mischhaut hin.</h1>
+                    <p>Klicke auf den Button, um mehr über deinen Hauttypen zu erfahren und erhalte wertvolle Tipps zur optimalen Pflege </p>
+                    <p><a href="mischhaut.html" class="custom-button"><i class="fa fa-th"> </i> MISCHHAUT</a></p>
+                </div>
+                <div class="custom-col image-col">
+                    <img class="custom-image" src="skintest.webp" alt="Menschen">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<!-- Footer -->
+<div class="footer-basic">
+    <footer>
+        <ul class="list-inline">
+            <li class="list-inline-item"><a href="Hauttest.html">Hauttest</a></li>
+            <li class="list-inline-item"><a href="datenschutz.html">Datenschutz</a></li>
+            <li class="list-inline-item"><a href="agb.html">AGB</a></li>
+            <li class="list-inline-item"><a href="impressum.html">Impressum</a></li>
+        </ul>
+        <p class="copyright">2025 DerHauttest.de. Alle Rechte vorbehalten.</p>
+    </footer>
+    </div>
+
+</body>
+</html>
+
