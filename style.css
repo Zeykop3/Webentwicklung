@@ -126,7 +126,6 @@ nav a:hover::before {
 
 .sub-navigation {
     z-index: 2000;
-    /* Höherer Wert als der z-index des Headers */
 }
 
 /* Hauttypen --------------------------------------------------------------------- */
@@ -215,14 +214,17 @@ nav a:hover::before {
     display: flex;
     flex-direction: column;
     align-items: center;
+    z-index: 0;
 }
 
 .product img {
     width: 100%;
     max-width: 180px;
     height: auto;
+    margin-top:20px;
     border-radius: 8px;
     margin-bottom: 15px;
+    z-index: 1;
 }
 
 .product h3 {
@@ -238,18 +240,18 @@ nav a:hover::before {
     text-align: center;
 }
 
-.bookmark-btn {
+.product .bookmark-btn {
     position: absolute;
     top: 15px;
     right: 15px;
-    background: #333;
+    background:white;
     border: none;
     font-size: 20px;
-    color: #bbb;
+    color: #333;
     cursor: pointer;
 }
 
-.bookmark-btn:hover {
+.product .bookmark-btn:hover {
     color: #f5a623;
 }
 
@@ -293,7 +295,7 @@ nav a:hover::before {
 }
 
 .merkliste-container .empty-message {
-    grid-column: span 2;
+    grid-column: span 3;
     text-align: center;
     font-size: 1.5em;
     color: #777;
@@ -301,6 +303,34 @@ nav a:hover::before {
 }
 
 /* Hauttest ------------------------------------------------------------------ */
+/* header */
+.header-container2 {
+    position: relative;
+    max-width: 100%;
+    min-width: 500px;
+    height: 500px;
+    background: url('headerht.jpg') center/cover no-repeat;
+    margin: 0 auto;
+}
+
+.header-text2 {
+    position: absolute;
+    bottom: 40%;
+    left: 5%; 
+    transform: translateY(50%); 
+    padding: 20px;
+    color: #f6fff8; 
+}
+
+.header-text2 h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.header-text2 p {
+    font-size: 1.2em;
+    margin: 0;
+}
 /* Fragebogen Boxen */
 .frage-box {
     border: 2px solid #A4C3B2; 
@@ -331,8 +361,8 @@ nav a:hover::before {
     margin-bottom: 20px; 
 }
 
-/* Auswerten Button */
-button {
+/* Nur für Auswerten-Button */
+.auswerten-btn {
     padding: 15px;
     margin-bottom: 30px;
     background-color: #7cc79e;
@@ -348,13 +378,11 @@ button {
     margin-right: auto;
 }
 
-/* Hover-Effekt für den Button */
-button:hover {
+.auswerten-btn:hover {
     background-color: #58be86;
 }
 
-/* Fade-in Effekt für den Button */
-button.fade-in {
+.auswerten-btn.fade-in {
     opacity: 1;
 }
 
