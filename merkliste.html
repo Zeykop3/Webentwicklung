@@ -6,6 +6,8 @@
     <title>Merkliste</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="merkliste.css" />
+
 </head>
 <body>
 
@@ -25,10 +27,10 @@
 
     <!-- Merkliste  -->
     <div class="merkliste-container">
-        <div class="merkliste-grid" id="merkliste">
-            <!-- Produkte werden später per JavaScript hier eingefügt -->
+        <!-- Hier werden die Produkte dynamisch per JavaScript eingefügt -->
+        <div id="merkliste">
         </div>
-        <div class="empty-message">
+        <div class="empty-message" id="empty-message">
             Du hast noch keine Artikel auf deiner Merkliste.
         </div>
     </div>
@@ -45,6 +47,69 @@
             <p class="copyright">2025 DerHauttest.de. Alle Rechte vorbehalten.</p>
         </footer>
     </div>
+
+    <script>
+        // Merkliste aus dem localStorage laden
+        const merkliste = JSON.parse(localStorage.getItem('merkliste')) || [];
+    
+        document.addEventListener('DOMContentLoaded', function() {
+            const merklisteContainer = document.getElementById('merkliste');
+            const emptyMessage = document.getElementById('empty-message');
+    
+            if (merkliste.length === 0) {
+                // Keine Produkte in der Merkliste
+                emptyMessage.style.display = 'block';
+            } else {
+                // Produkte in der Merkliste anzeigen
+                emptyMessage.style.display = 'none';
+                merkliste.forEach(productId => {
+                    const productElement = createProductElement(productId);
+                    merklisteContainer.appendChild(productElement);
+                });
+            }
+        });
+    
+        // Beispielprodukte mit Produkt-ID, Name und Bild (du kannst sie dynamisch aus einer API oder einer Datenbank laden)
+        const productsData = {
+            product1: { name: "AVENE Cleanance Reinigungsgel", image: "https://cocopha.de/documents/products/Detailansicht/11516474-h1.png" },
+            product2: { name: "AVENE Anti-Aging Sonnenschutz SPF 50+", image: "https://ixxilon.mauve.de/300/11479678_8.jpg" },
+            product3: { name: "EUBOS TROCKENE HAUT Feuchtigkeitscreme", image: "https://cocopha.de/documents/products/Detailansicht/03447500_1.jpg" },
+            product4: { name: "BIODERMA Sensibio Mask", image: "https://cocopha.de/documents/products/Detailansicht/9226898.jpg" }
+        };
+    
+        // Funktion, um das Produkt-Element zu erstellen
+        function createProductElement(productId) {
+            const productElement = document.createElement('div');
+            productElement.classList.add('product');
+            productElement.setAttribute('data-id', productId);
+    
+            const product = productsData[productId]; // Hole Produktdaten basierend auf der ID
+    
+            productElement.innerHTML = `
+                <button class="remove-btn"><i class="fas fa-trash"></i> Entfernen</button>
+                <img src="${product.image}" alt="${product.name}" class="product-image" />
+                <h3>${product.name}</h3>
+            `;
+            
+            // Event-Listener für das Entfernen von Produkten aus der Merkliste
+            const removeButton = productElement.querySelector('.remove-btn');
+            removeButton.addEventListener('click', function() {
+                removeFromMerkliste(productId);
+                merklisteContainer.removeChild(productElement);
+            });
+    
+            return productElement;
+        }
+    
+        // Funktion, um ein Produkt aus der Merkliste zu entfernen
+        function removeFromMerkliste(productId) {
+            const index = merkliste.indexOf(productId);
+            if (index > -1) {
+                merkliste.splice(index, 1);
+                localStorage.setItem('merkliste', JSON.stringify(merkliste));
+            }
+        }
+    </script>
 
 </body>
 </html>

@@ -7,6 +7,7 @@
     <title>Hauttypen</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="hauttypen.css" />
 </head>
 
 <body>
@@ -70,7 +71,7 @@
         <h1>Empfohlene Pflegeprodukte für normale Haut</h1>
         <div class="product-grid">
             <!-- Produkt 1 -->
-            <div class="product">
+            <div class="product" data-id="product11">
                 <button class="bookmark-btn"><i class="fas fa-star"></i></button>
                 <img src="https://cocopha.de/documents/products/Detailansicht/12346206.jpg" alt="Gesichtsreiniger">
                 <h3>BIODERMA Sensibio Gel Moussant Reinigungsgel 200 ml</h3>
@@ -78,7 +79,7 @@
             </div>
     
             <!-- Produkt 2 -->
-            <div class="product">
+            <div class="product" data-id="product12">
                 <button class="bookmark-btn"><i class="fas fa-star"></i></button>
                 <img src="https://cocopha.de/documents/products/Detailansicht/0000030157330-La_Roche_Posay-14420817-LA_ROCHE-POSAY_ANTHELIOS_INVISIBLE_FLUID_LSF_30-01-Sonnenfluid_Front.jpg" alt="Sonnencreme">
                 <h3>LA ROCHE-POSAY Anthelios Invisible Fluid LSF 30, 50 ml</h3>
@@ -86,7 +87,7 @@
             </div>
     
             <!-- Produkt 3 -->
-            <div class="product">
+            <div class="product" data-id="product13">
                 <button class="bookmark-btn"><i class="fas fa-star"></i></button>
                 <img src="https://cocopha.de/documents/products/Detailansicht/csm_Hydrabio_Creme_selbst_freigestellt_e4b93ba356.jpg" alt="Feuchtigkeitscreme">
                 <h3>BIODERMA Hydrabio Creme Feuchtigkeitspflege 50 ml</h3>
@@ -94,7 +95,7 @@
             </div>
     
             <!-- Produkt 4 -->
-            <div class="product">
+            <div class="product" data-id="product14">
                 <button class="bookmark-btn"><i class="fas fa-star"></i></button>
                 <img src="https://cocopha.de/documents/products/Detailansicht/13905211-h1.jpg" alt="Serum">
                 <h3>AVENE DermAbsolu stärkendes Serum 30 ml</h3>
@@ -115,6 +116,61 @@
             <p class="copyright">2025 DerHauttest.de. Alle Rechte vorbehalten.</p>
         </footer>
     </div>
+    <script>
+      
+    // Merkliste aus dem localStorage laden
+    const merkliste = JSON.parse(localStorage.getItem('merkliste')) || [];
+
+    // Funktion, um ein Produkt zur Merkliste hinzuzufügen
+    function addToMerkliste(productId) {
+        if (!merkliste.includes(productId)) {
+            merkliste.push(productId);
+            localStorage.setItem('merkliste', JSON.stringify(merkliste));
+        }
+    }
+
+    // Funktion, um ein Produkt aus der Merkliste zu entfernen
+    function removeFromMerkliste(productId) {
+        const index = merkliste.indexOf(productId);
+        if (index > -1) {
+            merkliste.splice(index, 1);
+            localStorage.setItem('merkliste', JSON.stringify(merkliste));
+        }
+    }
+
+    // Funktion, um den Zustand des "Sterns" zu ändern (gekennzeichnet oder nicht)
+    function toggleBookmarkButton(button, productId) {
+        if (merkliste.includes(productId)) {
+            button.classList.add('bookmarked'); // Stern markiert
+        } else {
+            button.classList.remove('bookmarked'); // Stern nicht markiert
+        }
+    }
+
+    // Event Listener für die Sterne hinzufügen
+    document.addEventListener('DOMContentLoaded', function() {
+        const productButtons = document.querySelectorAll('.bookmark-btn');
+
+        productButtons.forEach(button => {
+            const productId = button.closest('.product').getAttribute('data-id');
+            
+            // Überprüfen, ob das Produkt bereits in der Merkliste ist
+            toggleBookmarkButton(button, productId);
+
+            // Klick-Event für das Hinzufügen und Entfernen aus der Merkliste
+            button.addEventListener('click', () => {
+                if (merkliste.includes(productId)) {
+                    removeFromMerkliste(productId);
+                    toggleBookmarkButton(button, productId);
+                } else {
+                    addToMerkliste(productId);
+                    toggleBookmarkButton(button, productId);
+                }
+            });
+        });
+    });
+</script>
+  
 </body>
 
 </html>

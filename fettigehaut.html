@@ -7,6 +7,8 @@
     <title>Hauttypen</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="hauttypen.css" />
+
 </head>
 
 <body>
@@ -60,28 +62,28 @@
     <div class="container">
         <h1>Empfohlene Pflegeprodukte für fettige Haut</h1>
         <div class="product-grid">
-            <div class="product">
+            <div class="product" data-id="product41">
                 <button class="bookmark-btn"><i class="fas fa-star"></i></button>
                 <img src="https://cocopha.de/documents/products/Detailansicht/9227142.jpg" alt="Reinigungsgel">
                 <h3>BIODERMA Sebium Gel Moussant Reinigungsgel 200 ml</h3>
                 <p>Klärt die Haut, ohne sie auszutrocknen.</p>
             </div>
     
-            <div class="product">
+            <div class="product" data-id="product42">
                 <button class="bookmark-btn"><i class="fas fa-star"></i></button>
                 <img src="https://cocopha.de/documents/products/Detailansicht/12404984.jpg" alt="Sonnencreme">
                 <h3>DERMASENCE Solvinea Med LSF 50+ Creme 150 ml</h3>
                 <p>Lässt sich leicht verteilen und zieht schnell ein</p>
             </div>
     
-            <div class="product">
+            <div class="product" data-id="product43">
                 <button class="bookmark-btn"><i class="fas fa-star"></i></button>
                 <img src="https://cocopha.de/documents/products/Detailansicht/07395645.jpg" alt="Creme">
                 <h3>BIODERMA Sebium Hydra Creme Feuchtigkeitspflege 40 ml</h3>
                 <p>Bekämpft Pickel und Mitesser effektiv mit Salicylsäure.</p>
             </div>
     
-            <div class="product">
+            <div class="product" data-id="product44">
                 <button class="bookmark-btn"><i class="fas fa-star"></i></button>
                 <img src="https://cocopha.de/documents/products/Detailansicht/11696016.png" alt="Maske">
                 <h3>AVENE Antirougeurs Calm beruhigende Maske 50 ml</h3>
@@ -101,8 +103,63 @@
             </ul>
             <p class="copyright">2025 DerHauttest.de. Alle Rechte vorbehalten.</p>
         </footer>
-    </div>
+    </div>  
 
+
+    <script>
+        // Merkliste aus dem localStorage laden
+        const merkliste = JSON.parse(localStorage.getItem('merkliste')) || [];
+    
+        // Funktion, um ein Produkt zur Merkliste hinzuzufügen
+        function addToMerkliste(productId) {
+            if (!merkliste.includes(productId)) {
+                merkliste.push(productId);
+                localStorage.setItem('merkliste', JSON.stringify(merkliste));
+            }
+        }
+    
+        // Funktion, um ein Produkt aus der Merkliste zu entfernen
+        function removeFromMerkliste(productId) {
+            const index = merkliste.indexOf(productId);
+            if (index > -1) {
+                merkliste.splice(index, 1);
+                localStorage.setItem('merkliste', JSON.stringify(merkliste));
+            }
+        }
+    
+        // Funktion, um den Zustand des "Sterns" zu ändern (gekennzeichnet oder nicht)
+        function toggleBookmarkButton(button, productId) {
+            if (merkliste.includes(productId)) {
+                button.classList.add('bookmarked'); // Stern markiert
+            } else {
+                button.classList.remove('bookmarked'); // Stern nicht markiert
+            }
+        }
+    
+        // Event Listener für die Sterne hinzufügen
+        document.addEventListener('DOMContentLoaded', function() {
+            const productButtons = document.querySelectorAll('.bookmark-btn');
+    
+            productButtons.forEach(button => {
+                const productId = button.closest('.product').getAttribute('data-id');
+                
+                // Überprüfen, ob das Produkt bereits in der Merkliste ist
+                toggleBookmarkButton(button, productId);
+    
+                // Klick-Event für das Hinzufügen und Entfernen aus der Merkliste
+                button.addEventListener('click', () => {
+                    if (merkliste.includes(productId)) {
+                        removeFromMerkliste(productId);
+                        toggleBookmarkButton(button, productId);
+                    } else {
+                        addToMerkliste(productId);
+                        toggleBookmarkButton(button, productId);
+                    }
+                });
+            });
+        });
+    </script>
+        
 </body>
 
 </html>

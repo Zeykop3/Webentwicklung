@@ -1,0 +1,46 @@
+/* Merkliste ----------------------------------------------------------------- */
+/* header */
+.header-container2 {
+    position: relative;
+    max-width: 100%;
+    min-width: 500px;
+    height: 500px;
+    background: url('merkliste.jpg') center/cover no-repeat;
+    margin: 0 auto;
+}
+
+.header-text2 {
+    position: absolute;
+    bottom: 40%;
+    left: 5%; 
+    transform: translateY(50%); 
+    padding: 20px;
+    color: #f6fff8; 
+}
+
+.header-text2 h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.header-text2 p {
+    font-size: 1.2em;
+    margin: 0;
+}
+
+/* Merkliste Bereich */
+.merkliste-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 40px;
+    margin-top: 10px; 
+}
+
+.merkliste-container .empty-message {
+    grid-column: span 3;
+    text-align: center;
+    font-size: 1.5em;
+    color: #777;
+    padding: 50px;
+}

@@ -68,28 +68,28 @@
         <div class="container">
             <h1>Empfohlene Pflegeprodukte für trockene Haut</h1>
             <div class="product-grid">
-                <div class="product">
+                <div class="product" data-id="product1">
                     <button class="bookmark-btn"><i class="fas fa-star"></i></button>
                     <img src="https://cocopha.de/documents/products/Detailansicht/10057892-h1.png" alt="Reinigungsmilch">
                     <h3>AVENE Cleanance HYDRA Beruhigende Reinigungscreme 200 ml</h3>
                     <p>Seifenfreie Gesichts- und Körperreinigungsmilch</p>
                 </div>
         
-                <div class="product">
+                <div class="product" data-id="product2">
                     <button class="bookmark-btn"><i class="fas fa-star"></i></button>
                     <img src="https://cocopha.de/documents/products/Detailansicht/00802461.jpg" alt="Sonnencreme">
                     <h3>Eucerin Sun Creme Sensitive Protect LSF 50+ 50 ml</h3>
                     <p>Pflegende Sonnencreme für trockene und auch besonders empfindliche Gesichtshaut</p>
                 </div>
         
-                <div class="product">
+                <div class="product" data-id="product3">
                     <button class="bookmark-btn"><i class="fas fa-star"></i></button>
                     <img src="https://ixxilon.mauve.de/300/11352564_8.jpg" alt="Creme">
                     <h3>AVENE Hydrance REICHHALTIG Feuchtigkeitscreme 40 ml</h3>
                     <p>Sorgt für eine intensive und langanhaltende Feuchtigkeitsversorgung</p>
                 </div>
         
-                <div class="product">
+                <div class="product" data-id="product4">
                     <button class="bookmark-btn"><i class="fas fa-star"></i></button>
                     <img src="https://cocopha.de/documents/products/Detailansicht/9226993.jpg" alt="Feuchtigkeitsserum">
                     <h3>BIODERMA Hydrabio Serum Feuchtigkeitsserum 40 ml</h3>
@@ -110,6 +110,59 @@
             <p class="copyright">2025 DerHauttest.de. Alle Rechte vorbehalten.</p>
         </footer>
     </div>
-
+    <script>
+        // Merkliste aus dem localStorage laden
+        const merkliste = JSON.parse(localStorage.getItem('merkliste')) || [];
+    
+        // Funktion, um ein Produkt zur Merkliste hinzuzufügen
+        function addToMerkliste(productId) {
+            if (!merkliste.includes(productId)) {
+                merkliste.push(productId);
+                localStorage.setItem('merkliste', JSON.stringify(merkliste));
+            }
+        }
+    
+        // Funktion, um ein Produkt aus der Merkliste zu entfernen
+        function removeFromMerkliste(productId) {
+            const index = merkliste.indexOf(productId);
+            if (index > -1) {
+                merkliste.splice(index, 1);
+                localStorage.setItem('merkliste', JSON.stringify(merkliste));
+            }
+        }
+    
+        // Funktion, um den Zustand des "Sterns" zu ändern (gekennzeichnet oder nicht)
+        function toggleBookmarkButton(button, productId) {
+            if (merkliste.includes(productId)) {
+                button.classList.add('bookmarked'); // Stern markiert
+            } else {
+                button.classList.remove('bookmarked'); // Stern nicht markiert
+            }
+        }
+    
+        // Event Listener für die Sterne hinzufügen
+        document.addEventListener('DOMContentLoaded', function() {
+            const productButtons = document.querySelectorAll('.bookmark-btn');
+    
+            productButtons.forEach(button => {
+                const productId = button.closest('.product').getAttribute('data-id');
+                
+                // Überprüfen, ob das Produkt bereits in der Merkliste ist
+                toggleBookmarkButton(button, productId);
+    
+                // Klick-Event für das Hinzufügen und Entfernen aus der Merkliste
+                button.addEventListener('click', () => {
+                    if (merkliste.includes(productId)) {
+                        removeFromMerkliste(productId);
+                        toggleBookmarkButton(button, productId);
+                    } else {
+                        addToMerkliste(productId);
+                        toggleBookmarkButton(button, productId);
+                    }
+                });
+            });
+        });
+    </script>
+    
 </body>
 </html>

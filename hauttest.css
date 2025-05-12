@@ -1,0 +1,185 @@
+/* Hauttest ------------------------------------------------------------------ */
+/* header */
+.header-container2 {
+    position: relative;
+    max-width: 100%;
+    min-width: 500px;
+    height: 500px;
+    background: url('headerht.jpg') center/cover no-repeat;
+    margin: 0 auto;
+}
+
+.header-text2 {
+    position: absolute;
+    bottom: 40%;
+    left: 5%; 
+    transform: translateY(50%); 
+    padding: 20px;
+    color: #f6fff8; 
+}
+
+.header-text2 h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.header-text2 p {
+    font-size: 1.2em;
+    margin: 0;
+}
+/* Fragebogen Boxen */
+.frage-box {
+    border: 2px solid #A4C3B2; 
+    padding: 15px;
+    margin-bottom: 20px; 
+    border-radius: 8px; 
+    background-color: #f9f9f9; 
+    max-width: 600px; 
+    margin-left: auto;
+    margin-right: auto; 
+}
+
+/* Text und Labels */
+.frage-box p {
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.frage-box label {
+    display: block; 
+    margin-bottom: 8px;
+}
+
+#fragebogen h2 {
+    text-align: center; 
+    font-size: 24px; 
+    margin-bottom: 20px; 
+}
+
+/* Auswerten-Button */
+.auswerten-btn {
+    padding: 15px;
+    margin-bottom: 30px;
+    background-color: #7cc79e;
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    border-radius: 6px; 
+    display: block; 
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.auswerten-btn:hover {
+    background-color: #58be86;
+}
+
+.auswerten-btn.fade-in {
+    opacity: 1;
+}
+
+/* Ergebnis Feld Trockene, Normale, fettige und Mischhaut */
+
+.center-box {
+    text-align: center;
+    padding: 50px;
+    border: 1px solid #A4C3B2;
+    background-color: #A4C3B2;
+    border-radius: 8px;
+    margin: 70px auto; 
+    max-width: 80%;
+    color: #333;
+    font-size: 1.2em;
+}
+
+.custom-container {
+    max-width: 1600px; 
+    margin: 0 auto;
+    padding: 80px 16px;;
+    background-color: #f2f2f2;
+}
+
+.custom-row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.custom-col {
+    flex: 1;
+    padding: 0 16px;
+}
+
+.text-col {
+    text-align: left; 
+    margin-top: 30px;
+    line-height: 1.5;
+    max-width: 600px; 
+    margin-right: auto; 
+    margin-left: auto;
+}
+
+.image-col {
+    text-align: center; 
+}
+
+.custom-button {
+    text-decoration: none;
+    color: #fff;
+    background-color: #A4C3B2;
+    padding: 10px 15px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+.custom-button:hover {
+    background-color: #333;
+}
+
+.custom-image {
+    width: 100%;
+    max-height: 400px; 
+    border-radius: 10px; 
+}
+
+
+#result-container {
+    display: none;
+}
+
+#container-trocken {
+    display: none;
+}
+
+#container-normal {
+    display: none;
+}
+
+#container-mischhaut {
+    display: none;
+}
+
+#container-fettig {
+    display: none;
+}
+
+.result-container {
+opacity: 0; 
+transition: opacity 1s ease-in-out; 
+}
+
+.result-container.fade-in {
+opacity: 1; 
+}
+
+@keyframes fadeIn {
+from {
+    opacity: 0;
+}
+to {
+    opacity: 1;
+}
+} 
