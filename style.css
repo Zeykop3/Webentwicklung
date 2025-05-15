@@ -1,3 +1,8 @@
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+  }
+    
 /* Body --------------------------------------------------------------------------- */
 body {
     font-family: Arial, sans-serif;
@@ -15,9 +20,8 @@ nav {
     align-items: center;
     padding: 18px 30px; 
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    position: fixed;
+    position: relative;
     width: 100%;
-    top: 0;
     z-index: 1000;
     gap: 30px; 
 }
@@ -89,14 +93,12 @@ nav a:hover::before {
 .sub-navigation {
     background-color: #ffffff;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.24);
-    position: fixed;
-    top: 80px;
+    position: relative;
     width: 100%;
     z-index: 1000;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 10px;
 }
 
 .sub-navigation a {
@@ -119,11 +121,138 @@ nav a:hover::before {
     color: #333;
 }
 
-/* Stil für die Unter-Navigation beim Scrollen */
-.scrolled .sub-navigation {
-    background-color: #f6fff8;
-}
-
 .sub-navigation {
     z-index: 2000;
 }
+/* Responsive Design für Mobilgeräte */
+
+/* Basisoptimierung für Tablets und kleiner */
+@media screen and (max-width: 1024px) {
+    html {
+      font-size: 90%; /* Skaliert rem/em */
+    }
+  
+    body {
+      padding: 0 10px;
+    }
+  
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  
+    .header-text,
+    .header-text2,
+    .center-box {
+      padding: 20px;
+      font-size: 0.9em;
+    }
+  
+    .merkliste-grid,
+    .product-grid {
+      gap: 15px;
+      padding: 20px;
+    }
+  
+    .frage-box {
+      max-width: 90%;
+      font-size: 0.95em;
+    }
+  
+    .charakteristika-row,
+    .custom-row {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .charakteristika-col,
+    .custom-col {
+      padding: 0;
+      width: 100%;
+    }
+  }
+  
+  /* Smartphones */
+  @media screen and (max-width: 768px) {
+    /* Hauptnavigation */
+    nav {
+      flex-direction: column;
+      gap: 5px;
+      padding: 10px 5px;
+    }
+  
+    nav a {
+      font-size: 1rem;
+      padding: 8px;
+      margin: 2px 0;
+      width: 100%;
+      box-sizing: border-box;
+    }
+  
+    /* Sub-Navigation */
+    .sub-navigation {
+      position: static;
+      flex-wrap: wrap;
+      padding: 5px 0;
+      margin-top: 0;
+      gap: 3px;
+
+    }
+  
+    .sub-navigation a {
+      font-size: 0.9rem;
+      padding: 8px 10px;
+      margin: 0 2px;
+      position: center;
+    }
+  }
+
+
+    .header-text,
+    .header-text2 {
+      font-size: 0.85em;
+      text-align: left;
+    }
+  
+    .footer-basic {
+      font-size: 1em;
+      padding: 30px 10px;
+    }
+  
+    .product {
+      margin: 10px 0;
+    }
+  
+    .product img {
+      max-width: 140px;
+    }
+  
+    .center-box {
+      padding: 20px;
+      font-size: 1em;
+    }
+  
+    .auswerten-btn {
+      width: 100%;
+    }
+  
+  body {
+    font-size: 1rem; 
+          padding: 0; 
+          overflow-x: hidden; 
+  }
+  @media (max-width: 768px) {
+    .merkliste-grid,
+    .product-grid {
+      grid-template-columns: 1fr;
+      padding: 10px;
+      gap: 10px;
+    }
+  
+    .product {
+      margin: 10px auto;
+      width: 90%;
+    }
+  }
+  
+    
