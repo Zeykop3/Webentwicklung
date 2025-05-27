@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="merkliste.css" />
+  
 </head>
 <body>
 
@@ -30,9 +31,10 @@
     <div class="merkliste-grid" id="merkliste">
       <!-- Produkte werden hier per JavaScript eingefügt -->
     </div>
-    <div class="empty-message" id="empty-message">
+    <div class="empty-message" id="empty-message" style="display: none;">
       Du hast noch keine Artikel auf deiner Merkliste.
     </div>
+    
   </div>
 
   <!-- Footer -->
@@ -47,11 +49,17 @@
       <p class="copyright">2025 DerHauttest.de. Alle Rechte vorbehalten.</p>
     </footer>
   </div>
-
-  <!-- JavaScript -->
-  <script>
+</body>
+<!-- JavaScript -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
     const merkliste = JSON.parse(localStorage.getItem('merkliste')) || [];
-
+    console.log("Merkliste:", merkliste);
+    console.log("Merkliste Länge:", merkliste.length);
+  
+    const merklisteContainer = document.getElementById('merkliste');
+    const emptyMessage = document.getElementById('empty-message');
+  
     const productsData = {
       // Trockene Haut
       product1: {
@@ -70,7 +78,7 @@
         name: "BIODERMA Hydrabio Serum Feuchtigkeitsserum 40 ml",
         image: "https://cocopha.de/documents/products/Detailansicht/9226993.jpg"
       },
-
+  
       // Normale Haut
       product11: {
         name: "BIODERMA Sensibio Gel Moussant Reinigungsgel 200 ml",
@@ -88,7 +96,7 @@
         name: "AVENE DermAbsolu stärkendes Serum 30 ml",
         image: "https://cocopha.de/documents/products/Detailansicht/13905211-h1.jpg"
       },
-
+  
       // Mischhaut
       product21: {
         name: "AVENE Cleanance Reinigungsgel 400 ml",
@@ -106,7 +114,7 @@
         name: "BIODERMA Sensibio Mask Beruhigende Maske 75 ml",
         image: "https://cocopha.de/documents/products/Detailansicht/9226898.jpg"
       },
-
+  
       // Fettige Haut
       product41: {
         name: "BIODERMA Sebium Gel Moussant Reinigungsgel 200 ml",
@@ -125,69 +133,65 @@
         image: "https://cocopha.de/documents/products/Detailansicht/11696016.png"
       }
     };
+  
+    function updateEmptyMessage() {
+  if (merkliste.length === 0) {
+    emptyMessage.style.display = 'block';
+    emptyMessage.innerText = "Du hast noch keine Artikel auf deiner Merkliste.";
+  } else {
+    emptyMessage.style.display = 'none'; 
+  }
+}
 
-
-    document.addEventListener('DOMContentLoaded', () => {
-      const merklisteContainer = document.getElementById('merkliste');
-      const emptyMessage = document.getElementById('empty-message');
-
-      if (merkliste.length === 0) {
-  document.getElementById('merkliste').innerHTML = `
-    <div class="empty-message" style="text-align: center; padding: 20px; font-size: 18px;">
-      Du hast noch keine Artikel auf deiner Merkliste.
-    </div>
-  `;
-} else {
-  merkliste.forEach(productId => {
-    const productElement = createProductElement(productId);
-    if (productElement) {
-      merklisteContainer.appendChild(productElement);
+  
+    function createProductElement(productId) {
+      const product = productsData[productId];
+      if (!product) return null;
+  
+      const productElement = document.createElement('div');
+      productElement.classList.add('product');
+      productElement.setAttribute('data-id', productId);
+  
+      productElement.innerHTML = `
+        <button class="remove-btn"><i class="fas fa-trash"></i> Entfernen</button>
+        <img src="${product.image}" alt="${product.name}" class="product-image" />
+        <h3>${product.name}</h3>
+      `;
+  
+      const removeButton = productElement.querySelector('.remove-btn');
+      removeButton.addEventListener('click', () => {
+        removeFromMerkliste(productId);
+        productElement.remove();
+        if (merkliste.length === 0) {
+          updateEmptyMessage();
+          merklisteContainer.style.display = 'none';
+        }
+      });
+  
+      return productElement;
+    }
+  
+    function removeFromMerkliste(productId) {
+      const index = merkliste.indexOf(productId);
+      if (index !== -1) {
+        merkliste.splice(index, 1);
+        localStorage.setItem('merkliste', JSON.stringify(merkliste));
+      }
+    }
+  
+    updateEmptyMessage();
+  
+    if (merkliste.length > 0) {
+      merkliste.forEach(productId => {
+        const productElement = createProductElement(productId);
+        if (productElement) {
+          merklisteContainer.appendChild(productElement);
+        }
+      });
+    } else {
+      merklisteContainer.style.display = 'none';
     }
   });
-}
-emptyMessage.style.display = 'block'; // Wenn leer
-emptyMessage.style.display = 'none';  // Wenn voll
-
-
-      function updateEmptyMessage() {
-        if (merkliste.length === 0) {
-          emptyMessage.style.display = 'block';
-        }
-      }
-
-      function createProductElement(productId) {
-        const product = productsData[productId];
-        if (!product) return null;
-
-        const productElement = document.createElement('div');
-        productElement.classList.add('product');
-        productElement.setAttribute('data-id', productId);
-
-        productElement.innerHTML = `
-          <button class="remove-btn"><i class="fas fa-trash"></i> Entfernen</button>
-          <img src="${product.image}" alt="${product.name}" class="product-image" />
-          <h3>${product.name}</h3>
-        `;
-
-        const removeButton = productElement.querySelector('.remove-btn');
-        removeButton.addEventListener('click', () => {
-          removeFromMerkliste(productId);
-          productElement.remove();
-          updateEmptyMessage();
-        });
-
-        return productElement;
-      }
-
-      function removeFromMerkliste(productId) {
-        const index = merkliste.indexOf(productId);
-        if (index !== -1) {
-          merkliste.splice(index, 1);
-          localStorage.setItem('merkliste', JSON.stringify(merkliste));
-        }
-      }
-    });
   </script>
-
-</body>
+  
 </html>

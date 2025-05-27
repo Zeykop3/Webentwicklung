@@ -43,16 +43,18 @@
     padding: 40px;
   }
   
- /* Leere Merkliste-Meldung */
-#empty-message {
-    display: none;
-    text-align: center;
-    padding: 40px;
-    font-size: 1.2em;
-    color: #666;
-    width: 100%;
-    position: static; 
-    margin: 50px auto;
+/* Leere Merkliste-Meldung */
+.empty-message {
+  
+  text-align: center;
+  padding: 40px 20px;
+  font-size: 1.2em;
+  color: #666;
+  width: 100%;
+  margin: 50px auto;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
   
   /* Einzelnes Produkt */
