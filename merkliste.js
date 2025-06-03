@@ -1,5 +1,5 @@
-<!-- JavaScript -->
-  <script>
+// JavaScript //
+
   document.addEventListener('DOMContentLoaded', () => {
   const merkliste = JSON.parse(localStorage.getItem('merkliste')) || [];
   console.log("Merkliste:", merkliste);
@@ -134,4 +134,3 @@
         });
       }
     });
-  </script>
