@@ -62,6 +62,7 @@
 .auswerten-btn {
     padding: 15px;
     margin-bottom: 30px;
+    max-width: 250px;
     background-color: #7cc79e;
     color: white;
     font-weight: bold;

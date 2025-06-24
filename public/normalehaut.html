@@ -115,59 +115,47 @@
         </footer>
     </div>
     <script>
-      
-    // Merkliste aus dem localStorage laden
-    const merkliste = JSON.parse(localStorage.getItem('merkliste')) || [];
-
-    // Funktion, um ein Produkt zur Merkliste hinzuzufügen
-    function addToMerkliste(productId) {
-        if (!merkliste.includes(productId)) {
-            merkliste.push(productId);
-            localStorage.setItem('merkliste', JSON.stringify(merkliste));
-        }
-    }
-
-    // Funktion, um ein Produkt aus der Merkliste zu entfernen
-    function removeFromMerkliste(productId) {
-        const index = merkliste.indexOf(productId);
-        if (index > -1) {
-            merkliste.splice(index, 1);
-            localStorage.setItem('merkliste', JSON.stringify(merkliste));
-        }
-    }
-
-    // Funktion, um den Zustand des "Sterns" zu ändern (gekennzeichnet oder nicht)
-    function toggleBookmarkButton(button, productId) {
-        if (merkliste.includes(productId)) {
-            button.classList.add('bookmarked'); // Stern markiert
-        } else {
-            button.classList.remove('bookmarked'); // Stern nicht markiert
-        }
-    }
-
-    // Event Listener für die Sterne hinzufügen
-    document.addEventListener('DOMContentLoaded', function() {
-        const productButtons = document.querySelectorAll('.bookmark-btn');
-
-        productButtons.forEach(button => {
-            const productId = button.closest('.product').getAttribute('data-id');
-            
-            // Überprüfen, ob das Produkt bereits in der Merkliste ist
-            toggleBookmarkButton(button, productId);
-
-            // Klick-Event für das Hinzufügen und Entfernen aus der Merkliste
-            button.addEventListener('click', () => {
-                if (merkliste.includes(productId)) {
-                    removeFromMerkliste(productId);
-                    toggleBookmarkButton(button, productId);
-                } else {
-                    addToMerkliste(productId);
-                    toggleBookmarkButton(button, productId);
-                }
+        document.addEventListener("DOMContentLoaded", async () => {
+          // Merkliste vom Server abrufen
+          const wishlistIds = await fetch("http://localhost:3000/api/wishlist/ids", {
+            credentials: "include"
+          }).then(res => res.json());
+        
+          // Alle Bookmark-Buttons in den Karten
+          const buttons = document.querySelectorAll(".bookmark-btn");
+        
+          buttons.forEach(button => {
+            const productId = button.closest(".product").dataset.id;
+        
+            // Stern aktivieren, falls bereits in Merkliste
+            if (wishlistIds.includes(productId)) {
+              button.classList.add("bookmarked");
+            }
+        
+            // Klick auf Stern → Merkliste updaten
+            button.addEventListener("click", async () => {
+              const already = button.classList.contains("bookmarked");
+        
+              if (already) {
+                await fetch(`http://localhost:3000/api/wishlist/${productId}`, {
+                  method: "DELETE",
+                  credentials: "include"
+                });
+                button.classList.remove("bookmarked");
+              } else {
+                await fetch("http://localhost:3000/api/wishlist", {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  credentials: "include",
+                  body: JSON.stringify({ product_id: productId })
+                });
+                button.classList.add("bookmarked");
+              }
             });
+          });
         });
-    });
-</script>
+        </script>
+              
   
 </body>
 
