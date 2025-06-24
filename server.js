@@ -12,7 +12,7 @@ const PORT = 3000;
 app.use(express.json());
 app.use(cookieParser());
 
-// CORS erlauben für lokalen Zugriff (Live Server, etc.)
+// CORS für lokalen Zugriff 
 app.use(
   cors({
     origin: ['http://localhost:5500', 'http://127.0.0.1:5500'],
@@ -20,7 +20,7 @@ app.use(
   })
 );
 
-// Benutzer-ID setzen, falls noch kein Cookie vorhanden ist
+// Benutzer-ID setzen (Cookies)
 app.use((req, res, next) => {
   if (!req.cookies.user_id) {
     const id = uuidv4();
@@ -59,7 +59,7 @@ db.serialize(() => {
   )`);
 });
 
-// Produkte abrufen (optional mit Hauttypfilter)
+// Produkte abrufen 
 app.get('/api/products', (req, res) => {
   const { skintype } = req.query;
   const sql = skintype
@@ -130,7 +130,7 @@ app.delete('/api/wishlist/:product_id', (req, res) => {
   );
 });
 
-// Statische Dateien (optional)
+// Statische Dateien
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Test-Route
